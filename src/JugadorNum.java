@@ -1,18 +1,22 @@
 public class JugadorNum extends Jugador {
-    int numResultado;
-    int apuesta=10;
 
-    public JugadorNum(int resultado){
-        this.numResultado=resultado;
+    private int idJugador;
+
+    public JugadorNum(int id){
+        this.idJugador=id;
     }
 
     @Override
     public int apuesta(){
-        int numApuesta=(int)(Math.random()*37);
-        if (numApuesta==0){
-            numApuesta=(int)(Math.random()*37);
+        if (saldo>0) {
+            int numApuesta = (int) (Math.random() * 37);
+            saldo -= 10;
+            return numApuesta;
         }
-
+        else {
+            System.out.println("El jugador numero "+idJugador+" no tiene saldo");
+            return -1;
+        }
     }
 
 }
